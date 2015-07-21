@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Drag Test</title>
+    <link rel="stylesheet" href="//code.jquery.com/ui/1.11.4/themes/smoothness/jquery-ui.css">
+    <script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+    <script src="//code.jquery.com/jquery-migrate-1.2.1.min.js"></script>
+    <script src="//code.jquery.com/ui/1.11.4/jquery-ui.js"></script>
+</head>
+<body>
+<br><br><br>
+
+<div id="my-mask" style="width: 25%; height: 300px; overflow: hidden;">
+    <img id="my-image" src="stars.jpg" />
+</div>
+
+<script>
+    $(document).ready(function () {
+// Make sure it always starts @ zero position for below calcs to work
+        $("#my-image").css({top: 0, left: 0});
+
+        var maskWidth  = $("#my-mask").width();
+        var maskHeight = $("#my-mask").height();
+        var imgPos     = $("#my-image").offset();
+        var imgWidth   = $("#my-image").width();
+        var imgHeight  = $("#my-image").height();
+
+        var x1 = (imgPos.left + maskWidth) - imgWidth;
+        var y1 = (imgPos.top + maskHeight) - imgHeight;
+        var x2 = imgPos.left;
+        var y2 = imgPos.top;
+
+        $("#my-image").draggable({ containment: [x1,y1,x2,y2] });
+        $("#my-image").css({cursor: 'move'});
+    });
+</script>
+</body>
+</html>
